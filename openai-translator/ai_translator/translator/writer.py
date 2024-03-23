@@ -10,15 +10,16 @@ from reportlab.platypus import (
 from book import Book, ContentType
 from utils import LOG
 
+
 class Writer:
     def __init__(self):
         pass
 
     def save_translated_book(self, book: Book, output_file_path: str = None, file_format: str = "PDF"):
         if file_format.lower() == "pdf":
-            self._save_translated_book_pdf(book, output_file_path)
+            return self._save_translated_book_pdf(book, output_file_path)
         elif file_format.lower() == "markdown":
-            self._save_translated_book_markdown(book, output_file_path)
+            return self._save_translated_book_markdown(book, output_file_path)
         else:
             raise ValueError(f"Unsupported file format: {file_format}")
 
@@ -98,7 +99,8 @@ class Writer:
                             header = '| ' + ' | '.join(str(column) for column in table.columns) + ' |' + '\n'
                             separator = '| ' + ' | '.join(['---'] * len(table.columns)) + ' |' + '\n'
                             # body = '\n'.join(['| ' + ' | '.join(row) + ' |' for row in table.values.tolist()]) + '\n\n'
-                            body = '\n'.join(['| ' + ' | '.join(str(cell) for cell in row) + ' |' for row in table.values.tolist()]) + '\n\n'
+                            body = '\n'.join(['| ' + ' | '.join(str(cell) for cell in row) + ' |' for row in
+                                              table.values.tolist()]) + '\n\n'
                             output_file.write(header + separator + body)
 
                 # Add a page break (horizontal rule) after each page except the last one
@@ -106,3 +108,4 @@ class Writer:
                     output_file.write('---\n\n')
 
         LOG.info(f"翻译完成: {output_file_path}")
+        return output_file_path
