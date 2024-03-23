@@ -52,8 +52,8 @@ def main():
         # 定义输入和输出
         inputs = [
             gradio.components.File(label="上传待翻译的pdf文件"),
-            gradio.Textbox(label="源语言（默认：英文）", placeholder="English", value="English"),
-            gradio.Textbox(label="目标语言（默认：中文）", placeholder="Chinese", value="Chinese")
+            gradio.Dropdown(["英语", "中文", "日语"], label="源语言", value="英语"),
+            gradio.Dropdown(["英语", "中文", "日语"], label="目标语言", value="中文"),
         ]
         outputs = gradio.components.File(label="下载翻译后的pdf文件")
         # 创建 Gradio 应用程序
