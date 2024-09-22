@@ -66,4 +66,5 @@ def main():
 
 
 if __name__ == "__main__":
+    # TODO 在gradio创建之前，这边应该先实现translator的初始化以及相关判断
     main()
